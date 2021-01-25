@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.javanbeyond.com/BinaryAdditionService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BinaryAdditionService" targetNamespace="http://www.javanbeyond.com/BinaryAdditionService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.javanbeyond.com/BinaryAdditionService/">
+      <xsd:element name="binaryAddRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="a" type="xsd:string" />
+          	<xsd:element name="b" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="binaryAddResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="binaryAddRequest">
+    <wsdl:part element="tns:binaryAddRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="binaryAddResponse">
+    <wsdl:part element="tns:binaryAddResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="BinaryAdditionService">
+    <wsdl:operation name="binaryAdd">
+      <wsdl:input message="tns:binaryAddRequest"/>
+      <wsdl:output message="tns:binaryAddResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BinaryAdditionServiceSOAP" type="tns:BinaryAdditionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="binaryAdd">
+      <soap:operation soapAction="http://www.javanbeyond.com/BinaryAdditionService/binaryAdd"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BinaryAdditionService">
+    <wsdl:port binding="tns:BinaryAdditionServiceSOAP" name="BinaryAdditionServiceSOAP">
+      <soap:address location="http://www.javanbeyond.com/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

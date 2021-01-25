@@ -1,0 +1,6 @@
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	version="2.0">
+	<endpoint name="soapMetro"
+		implementation="com.javanbeyond.binaryadditionservice.BinaryAdditionService_BinaryAdditionServiceSOAPImpl"
+		url-pattern="/BinaryAdditionService" wsdl="WEB-INF/classes/wsdl/BinaryAdditionService.wsdl" />
+</endpoints>
