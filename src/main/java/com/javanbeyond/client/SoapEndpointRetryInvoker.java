@@ -29,7 +29,6 @@ public class SoapEndpointRetryInvoker {
                 throw ex;
             }
         }
-
         return response;
     }
 
