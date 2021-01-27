@@ -28,11 +28,19 @@ public class BinaryAdditionServiceClientTest {
 
     @Ignore
     @Test(expected = WebServiceException.class)
+    public void shouldThrowWebServiceExceptionIfNumberOfRetriesIsZeroAndRemoteServerConnectionTimesOut() throws Exception {
+        final String wsdlLocation = "http://localhost:8080/QuickSOAPOverviewMetro/BinaryAdditionService";
+        final BinaryAdditionServiceClient soapClient = new BinaryAdditionServiceClient(wsdlLocation, 0,
+                3000, 3000);
+        soapClient.addWithRetry("1011", "1000");
+    }
+
+    @Test(expected = WebServiceException.class)
     public void shouldRetryThreeTimesBeforeWebServiceExceptionIsThrown() throws Exception {
         final String wsdlLocation = "http://localhost:8080/QuickSOAPOverviewMetro/BinaryAdditionService";
         final BinaryAdditionServiceClient soapClient = new BinaryAdditionServiceClient(wsdlLocation, 3,
                 3000, 3000);
-        final String result = soapClient.addWithRetry("1011", "1000");
+        soapClient.addWithRetry("1011", "1000");
     }
 
 
